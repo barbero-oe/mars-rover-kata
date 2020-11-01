@@ -22,7 +22,10 @@ def test_rover_moves_forward(cardinal_point, movement):
 
 
 @pytest.mark.parametrize("cardinal_point,movement",
-                         [('N', (-1, 0))])
+                         [('N', (0, -1)),
+                          ('S', (0, 1)),
+                          ('E', (-1, 0)),
+                          ('W', (1, 0))])
 def test_rover_moves_backwards(cardinal_point, movement):
     rover = given_rover_at(initial_position().facing(cardinal_point))
 
