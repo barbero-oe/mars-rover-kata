@@ -44,5 +44,18 @@ def test_rover_should_be_able_to_turn(cardinal_point, turn, facing):
                               .build())
 
 
+def test_rover_can_make_complex_movements():
+    rover = given_rover_at(initial_position().facing('N'))
+
+    rover.instruct(['f', 'f', 'l', 'f', 'l', 'f', 'r', 'b',
+                    'b', 'b', 'b', 'r', 'b', 'f', 'f', 'f',
+                    'b', 'r', 'r', 'f', 'f', 'r', 'l', 'b'])
+
+    assert rover.locate() == (initial_position()
+                              .move((3, 1))
+                              .facing('S')
+                              .build())
+
+
 def given_rover_at(position):
     return Rover(GPS(position.build()))
