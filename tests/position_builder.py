@@ -1,4 +1,4 @@
-from mars_rover_kata.gps import Coordinate, Direction
+from mars_rover_kata.gps import Coordinate, CardinalPoint
 
 
 class PositionBuilder:
@@ -8,7 +8,7 @@ class PositionBuilder:
         self.orientation = None
 
     def facing(self, cardinal_point):
-        self.orientation = Direction.from_letter(cardinal_point)
+        self.orientation = CardinalPoint.from_letter(cardinal_point)
         return self
 
     def move(self, movement):
