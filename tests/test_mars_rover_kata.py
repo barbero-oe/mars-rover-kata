@@ -27,3 +27,4 @@ def test_rover_moves_backwards():
 
 def given_rover_at(position):
     return Rover(GPS(position.build()))
+

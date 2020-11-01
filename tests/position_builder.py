@@ -1,3 +1,6 @@
+from mars_rover_kata.gps import Coordinate, Direction
+
+
 class PositionBuilder:
     def __init__(self, x, y):
         self.y = y
@@ -5,7 +8,7 @@ class PositionBuilder:
         self.orientation = None
 
     def facing_north(self):
-        self.orientation = 'N'
+        self.orientation = Direction.NORTH
         return self
 
     def move_south(self, units):
@@ -17,7 +20,7 @@ class PositionBuilder:
         return self
 
     def build(self):
-        return self.x, self.y, self.orientation
+        return Coordinate(self.x, self.y, self.orientation)
 
 
 def initial_position():

@@ -3,15 +3,17 @@ class Rover:
         self.gps = gps
 
     def instruct(self, commands):
+        coordinates = self.gps.current_coordinates()
         for command in commands:
-            if command == 'f':
-                current = self.gps.current_position()
-                updated_position = current[0], current[1] + 1, current[2]
-                self.gps.update(updated_position)
-            if command == 'b':
-                current = self.gps.current_position()
-                updated_position = current[0], current[1] - 1, current[2]
-                self.gps.update(updated_position)
+            coordinates = self.move(command, coordinates)
+        self.gps.update(coordinates)
+
+    def move(self, command, coordinates):
+        if command == 'f':
+            coordinates = coordinates.update(longitude=coordinates.longitude + 1)
+        if command == 'b':
+            coordinates = coordinates.update(longitude=coordinates.longitude - 1)
+        return coordinates
 
     def locate(self):
-        return self.gps.current_position()
+        return self.gps.current_coordinates()
