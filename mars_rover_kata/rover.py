@@ -1,15 +1,16 @@
-from mars_rover_kata.gps import CardinalPoint
+from mars_rover_kata.cardinal_point import CardinalPoint
 
 
 class Rover:
-    def __init__(self, gps):
-        self.gps = gps
+    def __init__(self, current_coordinates, planet):
+        self.planet = planet
+        self.current_coordinates = current_coordinates
 
     def instruct(self, commands):
-        coordinates = self.gps.current_coordinates()
+        coordinates = self.current_coordinates
         for command in commands:
             coordinates = self.move(command, coordinates)
-        self.gps.update(coordinates)
+        self.current_coordinates = coordinates
 
     def move(self, command, coordinates):
         if command == 'f':
@@ -42,7 +43,7 @@ class Rover:
             return coordinate.adjust_by(latitude=1)
 
     def locate(self):
-        return self.gps.current_coordinates()
+        return self.current_coordinates
 
     def turn_left(self, coordinate):
         direction = coordinate.direction.next_point_anti_clockwise()

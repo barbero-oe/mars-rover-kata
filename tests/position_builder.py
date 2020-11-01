@@ -1,4 +1,5 @@
-from mars_rover_kata.gps import Coordinate, CardinalPoint
+from mars_rover_kata.cardinal_point import CardinalPoint
+from mars_rover_kata.coordinate import Coordinate
 
 
 class PositionBuilder:
@@ -22,3 +23,7 @@ class PositionBuilder:
 
 def initial_position():
     return PositionBuilder(5, 5)
+
+
+def origin_position():
+    return PositionBuilder(1, 1)

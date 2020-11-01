@@ -1,6 +1,6 @@
 import pytest
 
-from mars_rover_kata.gps import GPS
+from mars_rover_kata.planet import Planet
 from mars_rover_kata.rover import Rover
 from tests.position_builder import initial_position
 
@@ -57,5 +57,16 @@ def test_rover_can_make_complex_movements():
                               .build())
 
 
+# def test_crossing_the_latitude_origin_should_behave_as_an_sphere():
+#     rover = given_rover_at(origin_position().facing('S'))
+#
+#     rover.instruct(['f'])
+#
+#     assert rover.locate() == (origin_position()
+#                               .move((10, 1))
+#                               .facing('S')
+#                               .build())
+
+
 def given_rover_at(position):
-    return Rover(GPS(position.build()))
+    return Rover(position.build(), Planet())
