@@ -37,14 +37,23 @@ class Coordinate:
                 and self.longitude == other.longitude
                 and self.direction == other.direction)
 
+    def __repr__(self):
+        return f'LAT: {self.latitude} LON: {self.longitude} DIR: {self.direction}'
+
 
 class Direction(Enum):
     NORTH = 0
     SOUTH = 1
+    EAST = 2
+    WEST = 3
 
     @staticmethod
     def from_letter(letter):
         if letter == 'N':
             return Direction.NORTH
-        else:
+        elif letter == 'S':
             return Direction.SOUTH
+        elif letter == 'E':
+            return Direction.EAST
+        elif letter == 'W':
+            return Direction.WEST
