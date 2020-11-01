@@ -10,9 +10,9 @@ class Rover:
 
     def move(self, command, coordinates):
         if command == 'f':
-            coordinates = coordinates.update(longitude=coordinates.longitude + 1)
+            coordinates = coordinates.update(latitude=coordinates.latitude + 1)
         if command == 'b':
-            coordinates = coordinates.update(longitude=coordinates.longitude - 1)
+            coordinates = coordinates.update(latitude=coordinates.latitude - 1)
         return coordinates
 
     def locate(self):

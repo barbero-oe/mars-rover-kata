@@ -41,3 +41,10 @@ class Coordinate:
 class Direction(Enum):
     NORTH = 0
     SOUTH = 1
+
+    @staticmethod
+    def from_letter(letter):
+        if letter == 'N':
+            return Direction.NORTH
+        else:
+            return Direction.SOUTH

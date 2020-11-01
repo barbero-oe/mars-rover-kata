@@ -7,16 +7,13 @@ class PositionBuilder:
         self.x = x
         self.orientation = None
 
-    def facing_north(self):
-        self.orientation = Direction.NORTH
+    def facing(self, cardinal_point):
+        self.orientation = Direction.from_letter(cardinal_point)
         return self
 
-    def move_south(self, units):
-        self.y -= units
-        return self
-
-    def move_north(self, units):
-        self.y += units
+    def move(self, movement):
+        self.x += movement[0]
+        self.y += movement[1]
         return self
 
     def build(self):
