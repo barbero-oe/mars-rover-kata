@@ -8,6 +8,10 @@ class PositionBuilder:
         self.orientation = 'N'
         return self
 
+    def move_south(self, units):
+        self.y -= units
+        return self
+
     def move_north(self, units):
         self.y += units
         return self
@@ -17,4 +21,4 @@ class PositionBuilder:
 
 
 def initial_position():
-    return PositionBuilder(0, 0)
+    return PositionBuilder(5, 5)

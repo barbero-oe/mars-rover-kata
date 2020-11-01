@@ -8,10 +8,21 @@ def test_rover_moves_forward():
 
     rover.instruct(['f'])
 
-    assert (initial_position()
-            .facing_north()
-            .move_north(1)
-            .build()) == rover.locate()
+    assert rover.locate() == (initial_position()
+                              .facing_north()
+                              .move_north(1)
+                              .build())
+
+
+def test_rover_moves_backwards():
+    rover = given_rover_at(initial_position().facing_north())
+
+    rover.instruct(['b'])
+
+    assert rover.locate() == (initial_position()
+                              .facing_north()
+                              .move_south(1)
+                              .build())
 
 
 def given_rover_at(position):

@@ -6,7 +6,11 @@ class Rover:
         for command in commands:
             if command == 'f':
                 current = self.gps.current_position()
-                updated_position = (current[0], current[1] + 1, current[2])
+                updated_position = current[0], current[1] + 1, current[2]
+                self.gps.update(updated_position)
+            if command == 'b':
+                current = self.gps.current_position()
+                updated_position = current[0], current[1] - 1, current[2]
                 self.gps.update(updated_position)
 
     def locate(self):
