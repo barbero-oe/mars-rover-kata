@@ -2,7 +2,7 @@ import pytest
 
 from mars_rover_kata.planet import Planet
 from mars_rover_kata.rover import Rover
-from tests.position_builder import initial_position
+from tests.position_builder import initial_position, position_at
 
 
 @pytest.mark.parametrize('cardinal_point,movement',
@@ -57,15 +57,19 @@ def test_rover_can_make_complex_movements():
                               .build())
 
 
-# def test_crossing_the_latitude_origin_should_behave_as_an_sphere():
-#     rover = given_rover_at(origin_position().facing('S'))
-#
-#     rover.instruct(['f'])
-#
-#     assert rover.locate() == (origin_position()
-#                               .move((10, 1))
-#                               .facing('S')
-#                               .build())
+@pytest.mark.parametrize('origin,movement,coordinate',
+                         [((1, 1, 'S'), 'f', (10, 1, 'N')),
+                          ((1, 1, 'N'), 'b', (10, 1, 'S')),
+                          ((10, 1, 'N'), 'b', (1, 1, 'S')),
+                          ((10, 1, 'S'), 'b', (1, 1, 'N')),
+                          # ((1, 1, 'W'), 'f', (10, 1, 'N')),
+                          ])
+def test_crossing_the_latitude_origin_should_behave_as_an_sphere(origin, movement, coordinate):
+    rover = given_rover_at(position_at(origin))
+
+    rover.instruct([movement])
+
+    assert rover.locate() == position_at(coordinate).build()
 
 
 def given_rover_at(position):

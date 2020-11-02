@@ -27,6 +27,16 @@ class CardinalPoint(Enum):
         elif self == CardinalPoint.WEST:
             return CardinalPoint.NORTH
 
+    def invert(self):
+        if self == CardinalPoint.NORTH:
+            return CardinalPoint.SOUTH
+        elif self == CardinalPoint.SOUTH:
+            return CardinalPoint.NORTH
+        elif self == CardinalPoint.WEST:
+            return CardinalPoint.EAST
+        elif self == CardinalPoint.EAST:
+            return CardinalPoint.WEST
+
     @staticmethod
     def from_letter(letter):
         if letter == 'N':

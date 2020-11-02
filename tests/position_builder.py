@@ -27,3 +27,7 @@ def initial_position():
 
 def origin_position():
     return PositionBuilder(1, 1)
+
+
+def position_at(coordinate):
+    return PositionBuilder(coordinate[0], coordinate[1]).facing(coordinate[2])

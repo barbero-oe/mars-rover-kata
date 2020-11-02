@@ -9,38 +9,18 @@ class Rover:
     def instruct(self, commands):
         coordinates = self.current_coordinates
         for command in commands:
-            coordinates = self.move(command, coordinates)
+            coordinates = self.move(coordinates, command)
         self.current_coordinates = coordinates
 
-    def move(self, command, coordinates):
+    def move(self, coordinate, command):
         if command == 'f':
-            return self.forward(coordinates)
+            return self.planet.move_towards(coordinate, coordinate.direction)
         elif command == 'b':
-            return self.backward(coordinates)
+            return self.planet.move_towards(coordinate, coordinate.direction.invert())
         elif command == 'l':
-            return self.turn_left(coordinates)
+            return self.turn_left(coordinate)
         elif command == 'r':
-            return self.turn_right(coordinates)
-
-    def forward(self, coordinates):
-        if coordinates.direction == CardinalPoint.NORTH:
-            return coordinates.adjust_by(longitude=1)
-        elif coordinates.direction == CardinalPoint.SOUTH:
-            return coordinates.adjust_by(longitude=-1)
-        elif coordinates.direction == CardinalPoint.EAST:
-            return coordinates.adjust_by(latitude=1)
-        elif coordinates.direction == CardinalPoint.WEST:
-            return coordinates.adjust_by(latitude=-1)
-
-    def backward(self, coordinate):
-        if coordinate.direction == CardinalPoint.NORTH:
-            return coordinate.adjust_by(longitude=-1)
-        elif coordinate.direction == CardinalPoint.SOUTH:
-            return coordinate.adjust_by(longitude=1)
-        elif coordinate.direction == CardinalPoint.EAST:
-            return coordinate.adjust_by(latitude=-1)
-        elif coordinate.direction == CardinalPoint.WEST:
-            return coordinate.adjust_by(latitude=1)
+            return self.turn_right(coordinate)
 
     def locate(self):
         return self.current_coordinates
